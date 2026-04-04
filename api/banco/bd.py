@@ -40,6 +40,7 @@ def busca_paciente_por_cpf(cpf: str) -> dict[str, Any] | None:
             nome,
             cpf,
             telefone,
+            email,
             convenio,
             criado_em
         FROM pacientes
@@ -55,6 +56,7 @@ def cadastra_paciente(
     nome: str,
     cpf: str,
     telefone: str,
+    email: str,
     convenio: str | None = None
 ) -> dict[str, Any]:
     paciente_existente = busca_paciente_por_cpf(cpf)
@@ -66,18 +68,18 @@ def cadastra_paciente(
         }
 
     query = """
-        INSERT INTO pacientes (nome, cpf, telefone, convenio)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO pacientes (nome, cpf, telefone, email, convenio)
+        VALUES (?, ?, ?, ?, ?)
     """
 
     with cria_conexao() as conn:
-        cursor = conn.execute(query, (nome, cpf, telefone, convenio))
+        cursor = conn.execute(query, (nome, cpf, telefone, email, convenio))
         conn.commit()
 
         paciente_id = cursor.lastrowid
         paciente = conn.execute(
             """
-            SELECT id, nome, cpf, telefone, convenio, criado_em
+            SELECT id, nome, cpf, telefone, email, convenio, criado_em
             FROM pacientes
             WHERE id = ?
             """,

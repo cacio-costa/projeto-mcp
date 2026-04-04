@@ -1,13 +1,13 @@
 BEGIN TRANSACTION;
 
 -- Pacientes
-INSERT INTO pacientes (nome, cpf, telefone, convenio) VALUES
-('Ana Beatriz Souza', '11111111111', '11987654321', 'Unimed'),
-('Carlos Eduardo Lima', '22222222222', '11999887766', 'Bradesco Saúde'),
-('Fernanda Alves Rocha', '33333333333', '21991234567', 'SulAmérica'),
-('Gustavo Henrique Martins', '44444444444', '31993456789', 'Amil'),
-('Juliana Pereira Costa', '55555555555', '11995554433', 'Particular'),
-('Marcos Vinícius Oliveira', '66666666666', '21997778899', 'NotreDame Intermédica');
+INSERT INTO pacientes (nome, cpf, telefone, email, convenio) VALUES
+('Ana Beatriz Souza', '11111111111', '11987654321', 'ana.beatriz@email.com', 'Unimed'),
+('Carlos Eduardo Lima', '22222222222', '11999887766', 'carlos.lima@email.com', 'Bradesco Saúde'),
+('Fernanda Alves Rocha', '33333333333', '21991234567', 'fernanda.rocha@email.com', 'SulAmérica'),
+('Gustavo Henrique Martins', '44444444444', '31993456789', 'gustavo.martins@email.com', 'Amil'),
+('Juliana Pereira Costa', '55555555555', '11995554433', 'juliana.costa@email.com', 'Particular'),
+('Marcos Vinícius Oliveira', '66666666666', '21997778899', 'marcos.oliveira@email.com', 'NotreDame Intermédica');
 
 -- Médicos
 INSERT INTO medicos (nome, especialidade, ativo) VALUES

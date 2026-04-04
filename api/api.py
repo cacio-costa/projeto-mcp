@@ -23,6 +23,7 @@ class PacienteCreate(BaseModel):
     nome: str = Field(..., min_length=3, description="Nome completo do paciente")
     cpf: str = Field(..., min_length=11, max_length=11, description="CPF com 11 dígitos")
     telefone: str = Field(..., min_length=8, description="Telefone do paciente")
+    email: str = Field(..., description="Email do paciente")
     convenio: str | None = Field(default=None, description="Convênio do paciente")
 
 
@@ -63,6 +64,7 @@ def cadastrar_paciente(payload: PacienteCreate) -> dict[str, Any]:
         nome=payload.nome,
         cpf=payload.cpf,
         telefone=payload.telefone,
+        email=payload.email,
         convenio=payload.convenio,
     )
 
@@ -129,6 +131,7 @@ def listar_consultas_do_paciente(
     cpf: str = Query(..., description="CPF do paciente")
 ) -> dict[str, Any]:
     consultas = bd.lista_consultas_do_paciente(cpf)
+    
     return {
         "cpf": cpf,
         "quantidade": len(consultas),
@@ -136,7 +139,7 @@ def listar_consultas_do_paciente(
     }
 
 
-@app.post("/consultas/agendar")
+@app.post("/consultas")
 def agendar_consulta(payload: AgendamentoCreate) -> dict[str, Any]:
     resultado = bd.agenda_consulta(
         cpf=payload.cpf,
@@ -150,7 +153,7 @@ def agendar_consulta(payload: AgendamentoCreate) -> dict[str, Any]:
     return resultado
 
 
-@app.post("/consultas/cancelar")
+@app.put("/consultas/status/cancelada")
 def cancelar_consulta(payload: CancelamentoCreate) -> dict[str, Any]:
     resultado = bd.cancela_consulta(payload.agendamento_id)
 

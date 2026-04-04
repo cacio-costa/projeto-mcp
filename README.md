@@ -31,6 +31,10 @@ uvicorn api.api:app --reload
 A API estará disponível em `http://localhost:8000`. Você pode acessar a documentação interativa em `http://localhost:8000/docs`.
 
 
+## Arquitetura
+
+![Arquitetura do CliniFlow](imagens/arquitetura.png)
+
 ## O que o projeto faz
 
 O projeto é dividido em três blocos principais:

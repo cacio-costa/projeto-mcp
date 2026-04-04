@@ -10,6 +10,7 @@ CREATE TABLE pacientes (
     nome TEXT NOT NULL,
     cpf TEXT NOT NULL UNIQUE,
     telefone TEXT NOT NULL,
+    email TEXT NOT NULL,
     convenio TEXT,
     criado_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
